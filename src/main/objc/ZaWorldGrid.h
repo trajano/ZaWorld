@@ -17,10 +17,27 @@
 @interface ZaWorldGrid : NSView {
     NSPoint location;
     NSColor *itemColor;
+
+    /**
+     * This is the background color of the grid.
+     */
     NSColor *backgroundColor;
+    
+    /**
+     * This is the color of the grid, may be null, but only if showGrid is 
+     * false.
+     */
+    NSColor *gridColor;
+    
+    /**
+     * If this property is true, then the grid will be displayed.
+     */
+    BOOL showGrid;
 }
 @property(readwrite) NSPoint location;
 @property(assign) NSColor *itemColor;
 @property(assign) NSColor *backgroundColor;
+@property(assign) NSColor *gridColor;
+@property(readwrite) BOOL showGrid;
 
 @end
