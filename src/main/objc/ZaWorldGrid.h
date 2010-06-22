@@ -24,7 +24,7 @@
     NSColor *backgroundColor;
     
     /**
-     * This is the color of the grid, may be null, but only if showGrid is 
+     * This is the color of the grid, may be null, but only if gridVisible is 
      * false.
      */
     NSColor *gridColor;
@@ -32,12 +32,12 @@
     /**
      * If this property is true, then the grid will be displayed.
      */
-    BOOL showGrid;
+    BOOL gridVisible;
 }
 @property(readwrite) NSPoint location;
 @property(assign) NSColor *itemColor;
 @property(assign) NSColor *backgroundColor;
 @property(assign) NSColor *gridColor;
-@property(readwrite) BOOL showGrid;
+@property(readwrite) BOOL gridVisible;
 
 @end
