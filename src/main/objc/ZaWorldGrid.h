@@ -12,6 +12,10 @@
  * This is a generic Grid view that allows for a grid layout of sprites.  I
  * may eventually redo this to support animation so there would most likely be a
  * "next" view.
+ *
+ * A grid will contain the data for an entire floor.  The model has its coordinate
+ * system in the cartetian coordinate system and it it do a tranform so that the bottom left is drawn.
+ * It will draw the entire area for now.
  */
 
 @interface ZaWorldGrid : NSView {

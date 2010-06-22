@@ -12,45 +12,10 @@
 @implementation ZaWorldGrid
 @synthesize location, itemColor, backgroundColor, gridColor, gridVisible;
 
-- (void)setItemPropertiesToDefault:sender
-
-{
-    
-    [self setLocation:NSMakePoint(0.0,0.0)];
-    
+- (void)setItemPropertiesToDefault:sender {
     [self setItemColor:[NSColor redColor]];
-    
     [self setBackgroundColor:[NSColor grayColor]];
-    
-}
-- (NSRect)calculatedItemBounds
-
-{
-    
-    NSRect calculatedRect;
-    
-    
-    
-    // calculate the bounds of the draggable item
-    
-    // relative to the location
-    
-    calculatedRect.origin=location;
-    
-    
-    
-    // the example assumes that the width and height
-    
-    // are fixed values
-    
-    calculatedRect.size.width=60.0;
-    
-    calculatedRect.size.height=200.0;
-    
-    
-    
-    return calculatedRect;
-    
+    [self setGridColor: [NSColor blackColor]];
 }
 
 - (id)initWithFrame:(NSRect)frame {
@@ -58,29 +23,48 @@
     if (self) {
         // Initialization code here.
         [self setItemPropertiesToDefault:self];
+        
+        // Set the size of the object to a large size.
+        NSSize mapSize;
+        mapSize.width = 1000;
+        mapSize.height = 1000;
+        [self setFrameSize: mapSize];
     }
     return self;
 }
 
-- (void)drawRect:(NSRect)dirtyRect {
+- (void)drawRect:(NSRect)rect {
     // Drawing code here.
-    // erase the background by drawing white
+    int width = [self frame].size.width;
+    int height = [self frame].size.height ;
     
-    [backgroundColor set];
+    int i = 0 ;
+    int GRIDSIZE= 10;
     
-    [NSBezierPath fillRect:dirtyRect];
-    
-    
-    
-    // set the current color for the draggable item
-    
-    [[self itemColor] set];
+    // Set the color in the current graphics context for future draw operations
+    [gridColor setStroke];
     
     
+    // Create our drawing path
     
-    // draw the draggable item
+    NSBezierPath* drawingPath = [NSBezierPath bezierPath];
+    //  [drawingPath setLineWidth:0.1];
+    // Draw a grid
+    // first the vertical lines
+    for( i = 0 ; i <= width ; i=i+GRIDSIZE ) { 
+        // see http://www.cocoabuilder.com/archive/cocoa/53752-how-to-draw-1-pixel-line.html
+        // for the reason why I had to add 0.5
+        [drawingPath moveToPoint:NSMakePoint(i + 0.5, 0)]; 
+        [drawingPath lineToPoint:NSMakePoint(i + 0.5, height)]; 
+    } // then the horizontal lines
+    for( i = 0 ; i <= height ; i=i+GRIDSIZE ) {
+        [drawingPath moveToPoint:NSMakePoint(0, i + 0.5)];
+        [drawingPath lineToPoint:NSMakePoint(width, i + 0.5)]; 
+    }
+    // TODO transform to shift the map if it is smaller than the rect that was passed in.
+    // actually draw the grid
+    [drawingPath stroke];
     
-    [NSBezierPath fillRect:[self calculatedItemBounds]];
 }
 
 @end
