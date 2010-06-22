@@ -35,6 +35,10 @@
 
 - (void)drawRect:(NSRect)rect {
     // Drawing code here.
+    [backgroundColor set];
+    [NSBezierPath fillRect:rect];
+    
+    
     int width = [self frame].size.width;
     int height = [self frame].size.height ;
     
