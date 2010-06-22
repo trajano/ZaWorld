@@ -20,7 +20,7 @@
     
     [self setItemColor:[NSColor redColor]];
     
-    [self setBackgroundColor:[NSColor whiteColor]];
+    [self setBackgroundColor:[NSColor grayColor]];
     
 }
 - (NSRect)calculatedItemBounds
@@ -66,7 +66,7 @@
         // Drawing code here.
         // erase the background by drawing white
     
-    [[NSColor whiteColor] set];
+    [backgroundColor set];
     
     [NSBezierPath fillRect:dirtyRect];
     
