@@ -9,8 +9,9 @@
 #import <Cocoa/Cocoa.h>
 
 /**
- * This is a generic Grid view that allows for a grid layout of sprites.  I may eventually redo this 
- * to support animation so there would most likely be a "next" view.
+ * This is a generic Grid view that allows for a grid layout of sprites.  I
+ * may eventually redo this to support animation so there would most likely be a
+ * "next" view.
  */
 
 @interface ZaWorldGrid : NSView {
